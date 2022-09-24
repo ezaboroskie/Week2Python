@@ -106,20 +106,27 @@ while True:
       
       else:
         pool_table = Tables[table_number_check_in - 1]
-        pool_table.check_in()
+        if pool_table.isOccupied == False:
+            print("================================================")
+            print("|                   !ERROR!                    |") 
+            print("================================================")
+            print("|       ! This Table Was Not Occupied !        |")
+            print("================================================")
+        else:
+            pool_table.check_in()
         
-        now = datetime.now()
-        date_string = str(now.strftime("%m - %d - %Y"))
+            now = datetime.now()
+            date_string = str(now.strftime("%m - %d - %Y"))
         
-        end = datetime.strptime(pool_table.endTime, "%I:%M:%S")
-        start = datetime.strptime(pool_table.startTime, "%I:%M:%S")
-        total_time= (end - start)
+            end = datetime.strptime(pool_table.endTime, "%I:%M:%S")
+            start = datetime.strptime(pool_table.startTime, "%I:%M:%S")
+            total_time= (end - start)
         
-        with open(date_string + ".txt" , "a") as file:
-          file.write(f"Table #: {table_number_check_in} \n") 
-          file.write(f"   Start Time-- {pool_table.startTime} \n")
-          file.write(f"   End Time-- {pool_table.endTime} \n")
-          file.write(f"   Total Time-- {total_time} \n")
+            with open(date_string + ".txt" , "a") as file:
+                file.write(f"Table #: {table_number_check_in} \n") 
+                file.write(f"   Start Time-- {pool_table.startTime} \n")
+                file.write(f"   End Time-- {pool_table.endTime} \n")
+                file.write(f"   Total Time-- {total_time} \n")
       
 
 
